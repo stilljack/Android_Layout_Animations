@@ -1,6 +1,7 @@
 package com.lambdaschool.sprint2_challenge.recycleView
 
 import android.app.Activity
+import android.app.ActivityOptions
 import android.content.Context
 import android.content.Context.CONTEXT_IGNORE_SECURITY
 import android.content.Intent
@@ -17,6 +18,7 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.lambdaschool.sprint2_challenge.Activities.FullscreenActivity
+import com.lambdaschool.sprint2_challenge.Activities.FullscreenActivity.Companion.key
 import com.lambdaschool.sprint2_challenge.Activities.MainActivity
 
 
@@ -47,8 +49,8 @@ class ShoppingListAdapter(val shoppingList: MutableList<GroceryItems>) : Recycle
         holder.bindModel(currentSelection)
 
         holder.parentView.setOnClickListener {view ->
-            ViewCompat.setTransitionName(holder.imageIv, currentSelection.kind)
-            //clickIntentHandler(view.context, holder.adapterPosition,currentSelection,holder.imageIv)
+            //ViewCompat.setTransitionName(holder.imageIv, currentSelection.kind)
+            MainActivity.clickIntentHandler()
 
 
             if (currentSelection.ordered) {

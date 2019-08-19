@@ -3,17 +3,22 @@ package com.lambdaschool.sprint2_challenge.Activities
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
+import android.app.PendingIntent.getActivity
 import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v4.app.ActivityOptionsCompat
 import android.support.v4.app.NotificationCompat
+import android.support.v4.view.ViewCompat
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.transition.Fade
 import android.util.Log
 import android.view.Window
+import android.widget.ImageView
+import com.lambdaschool.sprint2_challenge.model.GroceryItems
 
 import com.lambdaschool.sprint2_challenge.model.ShoppingItemRepository.Companion.createShoppingList
 import com.lambdaschool.sprint2_challenge.model.ShoppingItemRepository.Companion.shoppingList
@@ -29,8 +34,17 @@ class MainActivity : AppCompatActivity() {
         var finalstr = ""
         var drawableRes:Int = 0
         const val transitionName = "yus"
+        val acivity =
+        fun clickIntentHandler (context: Context, pos:Int, groceryItems: GroceryItems, im: ImageView) {
+            var intent = Intent(context, FullscreenActivity::class.java)
+            intent.putExtra(PASSED_ITEM, groceryItems)
+            intent.putExtra(IMAGE_TRANSITION_NAME, ViewCompat.getTransitionName(im))
 
+            val options = ActivityOptionsCompat.makeSceneTransitionAnimation(this, im, ViewCompat.getTransitionName(im).toString())
+
+            context.startActivity(intent, options.toBundle())
     }
+        }
     //going to try some high level notes here like i saw vivek do last night, seemed good
     //step 1 object class (GroceryItems) to define what an individual items qualities will be
     //2: create a class to build a mutuable list of GroceryItems out of the two arrays provided in shoppingitemconstants
@@ -128,6 +142,9 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+
+
+    }
     }
 
 
