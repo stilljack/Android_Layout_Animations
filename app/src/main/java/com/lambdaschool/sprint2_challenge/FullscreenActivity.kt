@@ -28,6 +28,7 @@ class FullscreenActivity : AppCompatActivity() {
 
     companion object {
         const val key = "key"
+
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -50,13 +51,14 @@ class FullscreenActivity : AppCompatActivity() {
 
 
 
-        val item = intent.getSerializableExtra(key) as GroceryItems
-        tv_item_name.text = item.kind
-        iv_item_drawable.setImageDrawable(ContextCompat.getDrawable(this,item.resourceId))
+      //  val item = intent.getSerializableExtra(key) as GroceryItems
+        val item = intent.getIntExtra(key,R.drawable.apple2)
+       // tv_item_name.text = item.kind
+        iv_item_drawable.setImageDrawable(ContextCompat.getDrawable(this,item))
 
 
        // val intGet = intent.getIntExtra("action", R.drawable.cake)
-        cl.setBackgroundResource(item.resourceId)
+     //   cl.setBackgroundResource(item.resourceId)
 
 
         // code from this weekend to use same adapter to display something like a checkout bin
@@ -76,5 +78,6 @@ class FullscreenActivity : AppCompatActivity() {
 
 
     }
+
 
 }

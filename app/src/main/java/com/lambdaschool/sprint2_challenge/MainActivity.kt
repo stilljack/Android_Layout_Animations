@@ -9,12 +9,14 @@ import android.content.Intent
 import android.os.Build
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v4.app.ActivityOptionsCompat
 import android.support.v4.app.NotificationCompat
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.transition.Explode
 import android.transition.Fade
 import android.util.Log
+import android.view.View
 import android.view.Window
 import android.widget.ImageView
 import com.lambdaschool.sprint2_challenge.model.GroceryItems
@@ -22,12 +24,15 @@ import com.lambdaschool.sprint2_challenge.model.ShoppingItemRepository.Companion
 import com.lambdaschool.sprint2_challenge.model.ShoppingItemRepository.Companion.shoppingList
 import com.lambdaschool.sprint2_challenge.recycleView.ShoppingListAdapter
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.grocery_items_layout.*
 
 class MainActivity : AppCompatActivity() {
     companion object {
         const val NOTIFICATION_ID = 1
         var finalstr = ""
         var drawableRes:Int = 0
+        const val transitionName = "yus"
+
     }
     //going to try some high level notes here like i saw vivek do last night, seemed good
     //step 1 object class (GroceryItems) to define what an individual items qualities will be
@@ -103,10 +108,15 @@ class MainActivity : AppCompatActivity() {
             }
                 makeNotification(finalstr)
                     Log.i("currentasignment", "$drawableRes")
-             var action = Intent(this,FullscreenActivity::class.java)
+            /* var action = Intent(this,FullscreenActivity::class.java)
                      action.putExtra(FullscreenActivity.key, shoppingList[12])
-                     startActivity(action, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
-
+                     startActivity(action, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())*/
+            val intent = Intent(this, FullscreenActivity::class.java)
+           // val androidRobotView = iv_item_drawable.findViewById<View>(drawableRes)
+           // val activityOptions = ActivityOptionsCompat.makeSceneTransitionAnimation(this, androidRobotView, "robot")
+            intent.putExtra(FullscreenActivity.key, drawableRes)
+            //activityOptions.toBundle()
+            startActivity(intent)
                   /// val sendIntent: Intent = Intent().apply {
                        //action = Intent.ACTION_SEND
                       /// action = Intent(this,FullscreenActivity::class.java)
