@@ -11,7 +11,9 @@ import android.os.Bundle
 import android.support.v4.app.NotificationCompat
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.transition.Explode
 import android.util.Log
+import android.view.Window
 import android.widget.ImageView
 import com.lambdaschool.sprint2_challenge.model.GroceryItems
 import com.lambdaschool.sprint2_challenge.model.ShoppingItemRepository.Companion.createShoppingList
@@ -71,6 +73,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         createShoppingList()
 
+        //window.requestFeature(Window.FEATURE_CONTENT_TRANSITIONS)
+        //window.enterTransition = Explode()
+        //window.exitTransition = Explode()
         //Log.i("testthelist","$shoppingList")
 
         recycle_view.setHasFixedSize(true)

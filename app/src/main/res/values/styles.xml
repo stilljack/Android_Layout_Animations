@@ -6,26 +6,24 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-    <!--    &lt;!&ndash; enable window content transitions &ndash;&gt;
+
+    </style>
+    <style name="animatedTheme" parent="AppTheme">
+        <!-- enable window content transitions -->
         <item name="android:windowActivityTransitions">true</item>
 
-        &lt;!&ndash; specify enter and exit transitions &ndash;&gt;
-        <item name="android:windowEnterTransition">ex</item>
+        <!-- specify enter and exit transitions -->
+        <item name="android:windowEnterTransition">@transition/explode</item>
         <item name="android:windowExitTransition">@transition/explode</item>
 
-        &lt;!&ndash; specify shared element transitions &ndash;&gt;
+        <!-- specify shared element transitions -->
         <item name="android:windowSharedElementEnterTransition">
             @transition/change_image_transform</item>
         <item name="android:windowSharedElementExitTransition">
-            @transition/change_image_transform</item>-->
+            @transition/change_image_transform</item>
     </style>
-
     <style name="FullscreenTheme" parent="AppTheme">
-        <item name="android:actionBarStyle">@style/FullscreenActionBarStyle</item>
-        <item name="android:windowActionBarOverlay">true</item>
-        <item name="android:windowBackground">@null</item>
-        <item name="metaButtonBarStyle">?android:attr/buttonBarStyle</item>
-        <item name="metaButtonBarButtonStyle">?android:attr/buttonBarButtonStyle</item>
+
     </style>
 
     <style name="FullscreenActionBarStyle" parent="Widget.AppCompat.ActionBar">

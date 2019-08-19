@@ -1,5 +1,6 @@
 package com.lambdaschool.sprint2_challenge.recycleView
 
+import android.content.Intent
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -8,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import com.lambdaschool.sprint2_challenge.FullscreenActivity
 import com.lambdaschool.sprint2_challenge.MainActivity.Companion.drawableRes
 import com.lambdaschool.sprint2_challenge.R
 import com.lambdaschool.sprint2_challenge.model.GroceryItems
@@ -32,7 +34,7 @@ class ShoppingListAdapter(val shoppingList: MutableList<GroceryItems>) : Recycle
         val currentSelection = shoppingList[position]
         holder.bindModel(currentSelection)
 
-        holder.parentView.setOnClickListener {
+        holder.parentView.setOnClickListener {view ->
             if (currentSelection.ordered) {
                 currentSelection.ordered = false
                 notifyItemChanged(position)
@@ -42,7 +44,9 @@ class ShoppingListAdapter(val shoppingList: MutableList<GroceryItems>) : Recycle
                 notifyItemChanged(position)
                 drawableRes=currentSelection.resourceId
             }
-
+            val intent = Intent(view.context, FullscreenActivity::class.java)
+            intent.putExtra(FullscreenActivity.key, currentSelection)
+            view.context.startActivity(intent)
         }
 
         }
