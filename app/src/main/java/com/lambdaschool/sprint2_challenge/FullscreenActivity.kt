@@ -1,6 +1,7 @@
 package com.lambdaschool.sprint2_challenge
 
 import android.content.Intent
+import android.os.Build
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
@@ -29,11 +30,13 @@ class FullscreenActivity : AppCompatActivity() {
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        window.requestFeature(Window.FEATURE_CONTENT_TRANSITIONS)
-        window.enterTransition = Explode()
-        window.exitTransition = Explode()
         setContentView(R.layout.activity_fullscreen)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+
+
+
+
 
         val item = intent.getSerializableExtra(key) as GroceryItems
         tv_item_name.text = item.kind

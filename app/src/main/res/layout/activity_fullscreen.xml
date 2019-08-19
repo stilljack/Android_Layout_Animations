@@ -8,6 +8,7 @@
     tools:context=".FullscreenActivity"
     android:orientation="vertical"
     android:theme="@style/animatedTheme"
+    android:animateLayoutChanges="true"
     android:id="@+id/cl">
 
     <ImageView

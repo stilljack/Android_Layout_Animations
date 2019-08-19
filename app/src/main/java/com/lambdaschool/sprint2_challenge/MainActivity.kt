@@ -69,14 +69,22 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+
+            with(window) {
+                requestFeature(Window.FEATURE_CONTENT_TRANSITIONS)
+                enterTransition = Explode()
+                exitTransition = Explode()
+
+            }
+        } else {
+            // Swap without transition
+        }
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         createShoppingList()
 
-        //window.requestFeature(Window.FEATURE_CONTENT_TRANSITIONS)
-        //window.enterTransition = Explode()
-        //window.exitTransition = Explode()
-        //Log.i("testthelist","$shoppingList")
+
 
         recycle_view.setHasFixedSize(true)
         val manager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
@@ -94,7 +102,7 @@ class MainActivity : AppCompatActivity() {
                 makeNotification(finalstr)
                     Log.i("currentasignment", "$drawableRes")
              var action = Intent(this,FullscreenActivity::class.java)
-                     action.putExtra("action", drawableRes)
+                     action.putExtra(FullscreenActivity.key, shoppingList[12])
                      startActivity(action)
 
                   /// val sendIntent: Intent = Intent().apply {
