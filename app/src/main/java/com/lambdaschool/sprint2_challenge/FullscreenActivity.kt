@@ -8,6 +8,7 @@ import android.os.Handler
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.RecyclerView
 import android.transition.Explode
+import android.transition.Fade
 import android.util.Log
 import android.view.View
 import android.view.Window
@@ -29,6 +30,17 @@ class FullscreenActivity : AppCompatActivity() {
         const val key = "key"
     }
     override fun onCreate(savedInstanceState: Bundle?) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+
+            with(window) {
+                requestFeature(Window.FEATURE_CONTENT_TRANSITIONS)
+                enterTransition = Fade()
+                exitTransition = Fade()
+
+            }
+        } else {
+            // Swap without transition
+        }
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_fullscreen)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)

@@ -1,5 +1,6 @@
 package com.lambdaschool.sprint2_challenge
 
+import android.app.ActivityOptions
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
@@ -12,6 +13,7 @@ import android.support.v4.app.NotificationCompat
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.transition.Explode
+import android.transition.Fade
 import android.util.Log
 import android.view.Window
 import android.widget.ImageView
@@ -73,8 +75,8 @@ class MainActivity : AppCompatActivity() {
 
             with(window) {
                 requestFeature(Window.FEATURE_CONTENT_TRANSITIONS)
-                enterTransition = Explode()
-                exitTransition = Explode()
+                enterTransition = Fade()
+                exitTransition = Fade()
 
             }
         } else {
@@ -103,7 +105,7 @@ class MainActivity : AppCompatActivity() {
                     Log.i("currentasignment", "$drawableRes")
              var action = Intent(this,FullscreenActivity::class.java)
                      action.putExtra(FullscreenActivity.key, shoppingList[12])
-                     startActivity(action)
+                     startActivity(action, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
 
                   /// val sendIntent: Intent = Intent().apply {
                        //action = Intent.ACTION_SEND
