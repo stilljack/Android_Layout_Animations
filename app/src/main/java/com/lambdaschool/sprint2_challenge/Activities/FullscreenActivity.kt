@@ -1,24 +1,13 @@
-package com.lambdaschool.sprint2_challenge
+package com.lambdaschool.sprint2_challenge.Activities
 
-import android.content.Intent
 import android.os.Build
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
 import android.support.v4.content.ContextCompat
-import android.support.v7.widget.RecyclerView
-import android.transition.Explode
 import android.transition.Fade
-import android.util.Log
-import android.view.View
 import android.view.Window
-import com.lambdaschool.sprint2_challenge.model.GroceryItems
-import com.lambdaschool.sprint2_challenge.model.ShoppingItemRepository
-import com.lambdaschool.sprint2_challenge.recycleView.ShoppingListAdapter
+import com.lambdaschool.sprint2_challenge.R
 import kotlinx.android.synthetic.main.activity_fullscreen.*
-import kotlinx.android.synthetic.main.activity_main.*
-import android.support.v7.widget.LinearLayoutManager as LinearLayoutManager1
-import kotlinx.android.synthetic.main.activity_main.cl as cl1
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -52,7 +41,7 @@ class FullscreenActivity : AppCompatActivity() {
 
 
       //  val item = intent.getSerializableExtra(key) as GroceryItems
-        val item = intent.getIntExtra(key,R.drawable.apple2)
+        val item = intent.getIntExtra(key, R.drawable.apple2)
        // tv_item_name.text = item.kind
         iv_item_drawable.setImageDrawable(ContextCompat.getDrawable(this,item))
 

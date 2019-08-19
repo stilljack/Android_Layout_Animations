@@ -1,6 +1,5 @@
-package com.lambdaschool.sprint2_challenge
+package com.lambdaschool.sprint2_challenge.Activities
 
-import android.app.ActivityOptions
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
@@ -9,26 +8,24 @@ import android.content.Intent
 import android.os.Build
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.support.v4.app.ActivityOptionsCompat
 import android.support.v4.app.NotificationCompat
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.transition.Explode
 import android.transition.Fade
 import android.util.Log
-import android.view.View
 import android.view.Window
-import android.widget.ImageView
-import com.lambdaschool.sprint2_challenge.model.GroceryItems
+
 import com.lambdaschool.sprint2_challenge.model.ShoppingItemRepository.Companion.createShoppingList
 import com.lambdaschool.sprint2_challenge.model.ShoppingItemRepository.Companion.shoppingList
 import com.lambdaschool.sprint2_challenge.recycleView.ShoppingListAdapter
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.grocery_items_layout.*
+
 
 class MainActivity : AppCompatActivity() {
     companion object {
         const val NOTIFICATION_ID = 1
+        const val IMAGE_TRANSITION_NAME = "2"
+        const val PASSED_ITEM ="3"
         var finalstr = ""
         var drawableRes:Int = 0
         const val transitionName = "yus"
@@ -88,14 +85,16 @@ class MainActivity : AppCompatActivity() {
             // Swap without transition
         }
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(com.lambdaschool.sprint2_challenge.R.layout.activity_main)
         createShoppingList()
 
 
 
         recycle_view.setHasFixedSize(true)
         val manager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
-        val adapter = ShoppingListAdapter(shoppingList)
+        var adapter = ShoppingListAdapter(shoppingList)
+        adapter.setHasStableIds(true)
+
         recycle_view.layoutManager = manager
         recycle_view.adapter = adapter
 

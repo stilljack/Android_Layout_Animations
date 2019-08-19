@@ -1,9 +1,10 @@
 package com.lambdaschool.sprint2_challenge.recycleView
 
 import android.app.Activity
-import android.app.ActivityOptions
+import android.content.Context
+import android.content.Context.CONTEXT_IGNORE_SECURITY
 import android.content.Intent
-import android.content.pm.ActivityInfo
+import android.support.annotation.MainThread
 import android.support.v4.app.ActivityOptionsCompat
 import android.support.v4.content.ContextCompat
 import android.support.v4.content.ContextCompat.startActivity
@@ -15,15 +16,16 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
-import com.lambdaschool.sprint2_challenge.FullscreenActivity
+import com.lambdaschool.sprint2_challenge.Activities.FullscreenActivity
+import com.lambdaschool.sprint2_challenge.Activities.MainActivity
 
-import com.lambdaschool.sprint2_challenge.MainActivity
-import com.lambdaschool.sprint2_challenge.MainActivity.Companion.drawableRes
-import com.lambdaschool.sprint2_challenge.MainActivity.Companion.transitionName
+
+import com.lambdaschool.sprint2_challenge.Activities.MainActivity.Companion.drawableRes
 
 import com.lambdaschool.sprint2_challenge.R
 import com.lambdaschool.sprint2_challenge.model.GroceryItems
 import kotlinx.android.synthetic.main.grocery_items_layout.view.*
+import java.io.Serializable
 
 class ShoppingListAdapter(val shoppingList: MutableList<GroceryItems>) : RecyclerView.Adapter<ShoppingListAdapter.ViewHolder>() {
 
@@ -44,8 +46,11 @@ class ShoppingListAdapter(val shoppingList: MutableList<GroceryItems>) : Recycle
         val currentSelection = shoppingList[position]
         holder.bindModel(currentSelection)
 
-        ViewCompat.setTransitionName(holder.imageIv, currentSelection.kind)
         holder.parentView.setOnClickListener {view ->
+            ViewCompat.setTransitionName(holder.imageIv, currentSelection.kind)
+            //clickIntentHandler(view.context, holder.adapterPosition,currentSelection,holder.imageIv)
+
+
             if (currentSelection.ordered) {
                 currentSelection.ordered = false
                 notifyItemChanged(position)
@@ -56,14 +61,19 @@ class ShoppingListAdapter(val shoppingList: MutableList<GroceryItems>) : Recycle
                 drawableRes=currentSelection.resourceId
             }
 
-
-
-
-
-
         }
 
         }
+    /*fun clickIntentHandler (context: Context, pos:Int, groceryItems: GroceryItems, im:ImageView){
+        var intent = Intent(context, FullscreenActivity::class.java)
+        intent.putExtra(MainActivity.PASSED_ITEM, groceryItems as Serializable)
+        intent.putExtra(MainActivity.IMAGE_TRANSITION_NAME, ViewCompat.getTransitionName(im))
+
+        val options = ActivityOptionsCompat.makeSceneTransitionAnimation(context, im, ViewCompat.getTransitionName(im).toString())
+
+        context.startActivity(intent, options.toBundle())
+
+    }*/
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val imageIv: ImageView = view.iv_item_drawable
