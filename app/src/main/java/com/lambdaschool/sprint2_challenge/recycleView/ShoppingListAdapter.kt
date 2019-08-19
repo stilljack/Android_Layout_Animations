@@ -50,7 +50,7 @@ class ShoppingListAdapter(val shoppingList: MutableList<GroceryItems>) : Recycle
 
         holder.parentView.setOnClickListener {view ->
             //ViewCompat.setTransitionName(holder.imageIv, currentSelection.kind)
-            MainActivity.clickIntentHandler()
+
 
 
             if (currentSelection.ordered) {
