@@ -17,6 +17,7 @@
         android:layout_weight="8"
         android:id="@+id/iv_item_drawable"
         android:src="@drawable/eclair"
+        android:transitionName="@string/activity_image_trans"/>
 
     />
     <TextView

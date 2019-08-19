@@ -25,6 +25,9 @@ import com.lambdaschool.sprint2_challenge.model.ShoppingItemRepository.Companion
 import com.lambdaschool.sprint2_challenge.model.ShoppingItemRepository.Companion.shoppingList
 import com.lambdaschool.sprint2_challenge.recycleView.ShoppingListAdapter
 import kotlinx.android.synthetic.main.activity_main.*
+import android.R
+
+
 
 
 class MainActivity : AppCompatActivity() {
@@ -106,7 +109,7 @@ class MainActivity : AppCompatActivity() {
         recycle_view.setHasFixedSize(true)
         val manager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
         var adapter = ShoppingListAdapter(shoppingList)
-        adapter.setHasStableIds(true)
+
 
         recycle_view.layoutManager = manager
         recycle_view.adapter = adapter
@@ -120,7 +123,13 @@ class MainActivity : AppCompatActivity() {
             }
                 makeNotification(finalstr)
                     Log.i("currentasignment", "$drawableRes")
-
+            val intent = Intent(this, FullscreenActivity::class.java)
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                val options = ActivityOptionsCompat.makeSceneTransitionAnimation(this, btn_button, "activity_image_trans")
+                startActivity(intent, options.toBundle())
+            } else {
+                startActivity(intent)
+            }
 
 
 

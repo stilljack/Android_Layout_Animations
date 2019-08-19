@@ -49,14 +49,10 @@ class ShoppingListAdapter(val shoppingList: MutableList<GroceryItems>) : Recycle
         holder.bindModel(currentSelection)
 
         holder.parentView.setOnClickListener {view ->
-            //ViewCompat.setTransitionName(holder.imageIv, currentSelection.kind)
-
-
 
             if (currentSelection.ordered) {
                 currentSelection.ordered = false
                 notifyItemChanged(position)
-
             } else {
                 currentSelection.ordered = true
                 notifyItemChanged(position)
