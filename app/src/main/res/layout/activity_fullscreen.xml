@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#0099cc"
+    tools:context=".FullscreenActivity"
+    android:id="@+id/cl">
+
+    <!-- The primary full-screen view. This can be replaced with whatever view
+         is needed to present your content, e.g. VideoView, SurfaceView,
+         TextureView, etc. -->
+   <android.support.v7.widget.RecyclerView
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:id="@+id/recycle_view_fullscreen"
+       tools:listitem="@layout/grocery_fullscreen_layout"
+
+       />
+    <FrameLayout
+        android:id="@+id/bottom_sheet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_behavior="android.support.design.widget.BottomSheetBehavior"
+        app:layout_constraintBottom_toBottomOf="@+id/cl"
+        android:animateLayoutChanges="true"
+        >
+
+        <android.support.v7.widget.AppCompatImageButton
+            android:id="@+id/dummy_button"
+            style="?metaButtonBarButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/eclair"
+            android:text="asdfasdfasdfasdfasdf"
+
+            />
+        <ImageView
+            android:id="@+id/iv_dummy"
+            android:src="@drawable/asparagus"
+            android:adjustViewBounds="true"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            />
+    </FrameLayout>
+
+
+
+</android.support.constraint.ConstraintLayout>
